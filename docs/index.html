@@ -1,112 +1,111 @@
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Visor 3D</title>
-
+    <meta name="theme-color" content="#100811">
+    <meta name="description" content="Explora en 3D una araña robótica articulada.">
+    <title>Araña robótica | Visor 3D</title>
     <link rel="stylesheet" href="styles.css">
-
-    <script type="module"
-        src="models/zoee_wanderfalke__kaiju_no.8/scene.gltf">
-    </script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </head>
-
 <body>
-
     <header class="navbar">
-
-        <div class="logo">
-            <span class="logo-icon">◇</span>
+        <a class="logo" href="./" aria-label="Visor 3D, inicio">
+            <svg class="logo-icon" aria-hidden="true" viewBox="0 0 40 40" fill="none">
+                <path d="M17 15 9 9m14 6 8-6M16 19 5 17m19 2 11-2M16 23 6 28m18-5 10 5M17 26l-5 8m11-8 5 8" />
+                <ellipse cx="20" cy="21" rx="5" ry="8" />
+                <circle cx="20" cy="11" r="3" />
+            </svg>
             <span>Modelo <strong>3D</strong></span>
-        </div>
-
+        </a>
         <div class="header-right">
-            <span>VISUALIZADOR 3D</span>
-
-            <div class="status">
-                <span class="status-dot"></span>
-                En línea
+            <span>ARCHIVO DE CRIATURAS</span>
+            <div class="status" id="estado-modelo" role="status" aria-live="polite">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span id="estado-texto">Cargando modelo</span>
             </div>
         </div>
-
     </header>
 
     <main class="escenario">
-
-        <div class="circulo-luz"></div>
-        <div class="luz-ambiente"></div>
-
-        <div class="plataforma">
+        <div class="circulo-luz" aria-hidden="true"></div>
+        <div class="luz-ambiente" aria-hidden="true"></div>
+        <div class="plataforma" aria-hidden="true">
             <div class="plataforma-interior"></div>
         </div>
 
-        <!-- MODELO 3D IMPLEMENTADO -->
-        <div class="contenedor-modelo">
-
+        <section class="contenedor-modelo" aria-label="Visor interactivo de la araña robótica">
             <model-viewer
                 id="visor"
-                src="models/objeto.glb"
-                alt="Modelo 3D"
+                src="models/arana_robot/scene.gltf"
+                alt="Modelo 3D de una araña robótica articulada"
                 camera-controls
                 touch-action="pan-y"
                 shadow-intensity="1.5"
-                exposure="1.2"
+                exposure="1.1"
                 environment-image="neutral"
-                camera-orbit="0deg 75deg 2.5m"
-                min-camera-orbit="auto auto 0.5m"
-                max-camera-orbit="auto auto 8m"
+                camera-orbit="25deg 72deg 0.22m"
+                min-camera-orbit="auto auto 0.08m"
+                max-camera-orbit="auto auto 0.8m"
                 field-of-view="30deg"
                 interaction-prompt="auto"
-                loading="eager">
-
+                loading="eager"
+                animation-name="Take 001"
+                autoplay
+                animation-loop>
             </model-viewer>
 
-        </div>
+            <div class="mensaje-inicial" id="mensaje-carga" aria-live="polite">
+                <span class="cargador" aria-hidden="true"></span>
+                <p>Cargando modelo 3D…</p>
+            </div>
+            <div class="mensaje-error" id="mensaje-error" role="alert" hidden>
+                <strong>No se pudo cargar el modelo</strong>
+                <span>Comprueba tu conexión e inténtalo de nuevo.</span>
+            </div>
+        </section>
 
-        <!-- CONTROLES -->
-        <div class="controles">
+        <section class="ficha-modelo" aria-label="Información del modelo">
+            <span class="ficha-etiqueta">ESPECIE 001 · MECÁNICA</span>
+            <h1>Araña <span>robótica</span></h1>
+            <p>Arácnido articulado · unidad experimental</p>
+        </section>
 
-            <button id="rotar" class="control">
-                <span>⟳</span>
+        <div class="controles" role="group" aria-label="Controles del modelo 3D">
+            <button id="rotar" class="control" type="button" aria-label="Activar rotación automática" aria-pressed="false" disabled>
+                <span aria-hidden="true">⟳</span>
                 <small>Rotar</small>
             </button>
-
-            <div class="separador"></div>
-
-            <button id="acercar" class="control">
-                <span>⊕</span>
+            <div class="separador" aria-hidden="true"></div>
+            <button id="acercar" class="control" type="button" aria-label="Acercar modelo" disabled>
+                <span aria-hidden="true">⊕</span>
                 <small>Acercar</small>
             </button>
-
-            <div class="separador"></div>
-
-            <button id="alejar" class="control">
-                <span>⊖</span>
+            <div class="separador" aria-hidden="true"></div>
+            <button id="alejar" class="control" type="button" aria-label="Alejar modelo" disabled>
+                <span aria-hidden="true">⊖</span>
                 <small>Alejar</small>
             </button>
-
-            <div class="separador"></div>
-
-            <button id="restablecer" class="control">
-                <span>⌂</span>
+            <div class="separador" aria-hidden="true"></div>
+            <button id="restablecer" class="control" type="button" aria-label="Restablecer vista" disabled>
+                <span aria-hidden="true">⌂</span>
                 <small>Restablecer</small>
             </button>
-
         </div>
 
-        <div class="indicacion">
+        <div class="indicacion" aria-hidden="true">
             <span class="linea"></span>
             <span>ARRASTRA PARA EXPLORAR</span>
             <span class="linea"></span>
         </div>
 
+        <p class="atribucion">
+            Modelo por <a href="https://sketchfab.com/Yuquiii2" target="_blank" rel="noopener noreferrer">Yuquiii2</a>
+            · <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC 4.0</a>
+        </p>
     </main>
 
-    <script src="js/app.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
