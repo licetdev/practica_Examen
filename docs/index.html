@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Visor 3D</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script type="module"
+        src="models/zoee_wanderfalke__kaiju_no.8/scene.gltf">
+    </script>
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            <span class="logo-icon">◇</span>
+            <span>Modelo <strong>3D</strong></span>
+        </div>
+
+        <div class="header-right">
+            <span>VISUALIZADOR 3D</span>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                En línea
+            </div>
+        </div>
+
+    </header>
+
+    <main class="escenario">
+
+        <div class="circulo-luz"></div>
+        <div class="luz-ambiente"></div>
+
+        <div class="plataforma">
+            <div class="plataforma-interior"></div>
+        </div>
+
+        <!-- MODELO 3D IMPLEMENTADO -->
+        <div class="contenedor-modelo">
+
+            <model-viewer
+                id="visor"
+                src="models/objeto.glb"
+                alt="Modelo 3D"
+                camera-controls
+                touch-action="pan-y"
+                shadow-intensity="1.5"
+                exposure="1.2"
+                environment-image="neutral"
+                camera-orbit="0deg 75deg 2.5m"
+                min-camera-orbit="auto auto 0.5m"
+                max-camera-orbit="auto auto 8m"
+                field-of-view="30deg"
+                interaction-prompt="auto"
+                loading="eager">
+
+            </model-viewer>
+
+        </div>
+
+        <!-- CONTROLES -->
+        <div class="controles">
+
+            <button id="rotar" class="control">
+                <span>⟳</span>
+                <small>Rotar</small>
+            </button>
+
+            <div class="separador"></div>
+
+            <button id="acercar" class="control">
+                <span>⊕</span>
+                <small>Acercar</small>
+            </button>
+
+            <div class="separador"></div>
+
+            <button id="alejar" class="control">
+                <span>⊖</span>
+                <small>Alejar</small>
+            </button>
+
+            <div class="separador"></div>
+
+            <button id="restablecer" class="control">
+                <span>⌂</span>
+                <small>Restablecer</small>
+            </button>
+
+        </div>
+
+        <div class="indicacion">
+            <span class="linea"></span>
+            <span>ARRASTRA PARA EXPLORAR</span>
+            <span class="linea"></span>
+        </div>
+
+    </main>
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
